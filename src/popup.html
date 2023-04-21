@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>GPTMailLabeller</h3>
+    <h4>Add a filter!</h4>
+    <div style="min-width: 150px">
+      <input
+        type="radio"
+        value="all"
+        name="filterRadio"
+        id="allradio"
+        checked
+      />
+      <label for="allradio">All</label>
+      <br />
+      <input
+        type="radio"
+        value="interview"
+        name="filterRadio"
+        id="interviewsRadio"
+      />
+      <label for="interviewsRadio">Interviews</label>
+      <br />
+      <input
+        type="radio"
+        value="hackathon"
+        name="filterRadio"
+        id="hackathonsRadio"
+      />
+      <label for="hackathonsRadio">Hackathons</label>
+      <br />
+      <input
+        type="radio"
+        value="job-opening"
+        name="filterRadio"
+        id="jobOpeningsRadio"
+      />
+      <label for="jobOpeningsRadio">Job Openings</label>
+      <br />
+      <input
+        type="radio"
+        value="meeting"
+        name="filterRadio"
+        id="meetingsRadio"
+      />
+      <label for="meetingsRadio">Meetings</label>
+      <br />
+      <input
+        type="radio"
+        value="academics"
+        name="filterRadio"
+        id="academicsRadio"
+      />
+      <label for="academicsRadio">Academics</label>
+      <br />
+      <button id="submitBtn" style="margin-top: 10px">Submit</button>
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>
