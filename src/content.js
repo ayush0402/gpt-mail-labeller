@@ -3,7 +3,7 @@ import * as InboxSDK from "@inboxsdk/core";
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
-  apiKey: "YOUR_API_KEY_HERE",
+  apiKey: process.env.OPEN_AI_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
@@ -41,17 +41,22 @@ const getLabelFromGPT = async (mailContent) => {
   }
 };
 
+let originalThreadStore = [];
+let threadStore = [];
+
 const runContentScript = (inputMessage) => {
-  console.log(inputMessage.selectedFilter);
+  let filter = inputMessage.selectedFilter;
+
+  alert(filter);
   InboxSDK.load(2, "sdk_gmailgpt_00b7bc5282").then(async (sdk) => {
-    // the SDK has been loaded, now do something with it!
     sdk.Lists.registerThreadRowViewHandler(async function (threadRowView) {
       var threadView = threadRowView.getElement();
       let mailContent = threadView.innerText;
 
-      let filter = inputMessage.selectedFilter;
       let label = await getLabelFromGPT(mailContent);
 
+      originalThreadStore.push([threadView, label]);
+      threadStore.push([threadView, label]);
       if (filter !== "all" && label !== filter) {
         threadView.outerHTML = "";
       } else if (label !== "none") {
@@ -75,6 +80,12 @@ const runContentScript = (inputMessage) => {
         });
       }
     });
+    // iterate map with filter and set Element to empty for non required labels
+    for (let i = 0; i < threadStore.length; i++) {
+      if (filter !== "all" && threadStore[i][1] !== filter) {
+        threadStore[i][0].outerHTML = "";
+      }
+    }
   });
 };
 
