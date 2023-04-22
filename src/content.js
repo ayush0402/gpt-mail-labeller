@@ -22,7 +22,7 @@ const getLabelFromGPT = async (mailContent) => {
         {
           role: "assistant",
           content:
-            "Give the response in one word only based on the category of the email",
+            "Give the response in one word only based on the category of the email, responses are case sensitive.",
         },
       ],
       max_tokens: 300,
@@ -47,7 +47,6 @@ let threadStore = [];
 const runContentScript = (inputMessage) => {
   let filter = inputMessage.selectedFilter;
 
-  alert(filter);
   InboxSDK.load(2, "sdk_gmailgpt_00b7bc5282").then(async (sdk) => {
     sdk.Lists.registerThreadRowViewHandler(async function (threadRowView) {
       var threadView = threadRowView.getElement();
