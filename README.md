@@ -1,4 +1,9 @@
 # GPTmail
+## Demo
+
+
+https://github.com/ayush0402/gpt-mail-labeller/assets/76056229/10bda24a-13c8-4e5e-9b85-b782eaedb9e1
+
 
 ## Instructions
 
